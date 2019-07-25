@@ -1,0 +1,39 @@
+@charset "utf-8";
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;color:#333;text-decoration:none;}/*
+body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}*/
+.hide{display:none}
+.clearfix:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0}
+.clearfix{*zoom:1}
+em,i,s{font-style:normal;}
+
+.pros{position: absolute;top: 200px;left: 11%;z-index: 1000;width: 210px;background-color: #92807e;}
+.prosul{padding-left:3px;width:207px;margin-top:2px;_overflow:hidden;height:414px}
+.prosul li,.prosul i{background:url(../images/iconcatg.png) no-repeat;}
+
+li.food{background-position:10px 15px}
+li.enjoy{background-position:10px -35px}
+li.women{background-position:10px -85px}
+li.life{background-position:10px -135px}
+li.travel{background-position:10px -185px}
+li.goods{background-position:10px -235px}
+
+.prosul li{width: 207px;line-height:50px;height:50px;_overflow:hidden;border-bottom: 1px #d4b3af dashed;margin-right:3px;padding-left:38px}
+.prosul li.prosahover{border-bottom:1px #fff solid;background-color:#fff;margin-right:0;padding-right:3px;}
+.prosul a{color: #e4dfde;padding-right:8px;_padding-right:6px;white-space:nowrap;display:inline-block;height:50px}
+
+.prosul li.prosahover a{color:#636363}
+.prosul li a.ti{font-size:14px;font-family:"\5FAE\8F6F\96C5\9ED1";color:#fff}
+.prosul li.prosahover a.ti{color:#000000}
+.prosul li a:hover{color:#131010}
+.prosul li.nochild a:hover{color:#fff}
+.prosul li i{float:right;display:block;width:3px;height:50px;text-indent:-999em;background-position:0 -276px;padding-right:12px}
+.prosul li.prosahover i{background-position:0 -326px}
+
+.prosul li.prosahover h2{color:#d03322}
+.prosmore{padding:15px 0 15px 15px;position:absolute;z-index:999;left:210px;top:0px;background-color:#fff;border: 2px #d8cfce solid;border-left:0 none;width:214px;height:426px;}
+.prosul .prosmore{text-align:left}
+.prosul .prosmore span{float:left;height:36px;width:83px;line-height:22px}
+.prosul li .prosmore a{height:18px;line-height:18px;padding:0 4px;color: #000000;text-decoration: none;}
+.prosul li .prosmore a:hover{text-decoration: underline;}
+.prosmore em{font-weight:400;padding-top:9px;display:inline-block}

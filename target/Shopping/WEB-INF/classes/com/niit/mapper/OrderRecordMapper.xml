@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.niit.dao.OrderRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.niit.model.OrderRecord" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="user_sell" property="userSell" jdbcType="VARCHAR" />
+    <result column="user_buy" property="userBuy" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+    <result column="goods_counts" property="goodsCounts" jdbcType="INTEGER" />
+    <result column="sell_handler" property="sellHandler" jdbcType="BIT" />
+    <result column="buy_handler" property="buyHandler" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, order_time, user_sell, user_buy, goods_id, goods_counts, sell_handler, 
+    buy_handler
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from order_record
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByGoodsId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from order_record
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByUserBuyAccount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from order_record
+    where user_buy = #{userAccount,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from order_record
+  </select>
+  <select id="selectOrderRecordByKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM order_record
+    where order_time LIKE binary "%"#{key}"%"
+    OR user_sell LIKE "%"#{key}"%"
+    OR user_buy LIKE "%"#{key}"%"
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order_record
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.niit.model.OrderRecord" >
+    insert into order_record (order_id, order_time, user_sell, 
+      user_buy, goods_id, goods_counts, 
+      sell_handler, buy_handler)
+    values (#{orderId,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, #{userSell,jdbcType=VARCHAR}, 
+      #{userBuy,jdbcType=VARCHAR}, #{goodsId,jdbcType=VARCHAR}, #{goodsCounts,jdbcType=INTEGER},
+      #{sellHandler,jdbcType=BIT}, #{buyHandler,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.niit.model.OrderRecord" >
+    insert into order_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="userSell != null" >
+        user_sell,
+      </if>
+      <if test="userBuy != null" >
+        user_buy,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="goodsCounts != null" >
+        goods_counts,
+      </if>
+      <if test="sellHandler != null" >
+        sell_handler,
+      </if>
+      <if test="buyHandler != null" >
+        buy_handler,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userSell != null" >
+        #{userSell,jdbcType=VARCHAR},
+      </if>
+      <if test="userBuy != null" >
+        #{userBuy,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCounts != null" >
+        #{goodsCounts,jdbcType=INTEGER},
+      </if>
+      <if test="sellHandler != null" >
+        #{sellHandler,jdbcType=BIT},
+      </if>
+      <if test="buyHandler != null" >
+        #{buyHandler,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.niit.model.OrderRecord" >
+    update order_record
+    <set >
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userSell != null" >
+        user_sell = #{userSell,jdbcType=VARCHAR},
+      </if>
+      <if test="userBuy != null" >
+        user_buy = #{userBuy,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCounts != null" >
+        goods_counts = #{goodsCounts,jdbcType=INTEGER},
+      </if>
+      <if test="sellHandler != null" >
+        sell_handler = #{sellHandler,jdbcType=BIT},
+      </if>
+      <if test="buyHandler != null" >
+        buy_handler = #{buyHandler,jdbcType=BIT},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.niit.model.OrderRecord" >
+    update order_record
+    set order_time = #{orderTime,jdbcType=TIMESTAMP},
+      user_sell = #{userSell,jdbcType=VARCHAR},
+      user_buy = #{userBuy,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=VARCHAR},
+      goods_counts = #{goodsCounts,jdbcType=INTEGER},
+      sell_handler = #{sellHandler,jdbcType=BIT},
+      buy_handler = #{buyHandler,jdbcType=BIT}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>
